@@ -1,0 +1,16 @@
+{
+  "name": "pipeline_test",
+  "version": "0.0.1",
+  "dockerimage": "pipeline_test",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cjineson/pipeline_test.git"
+  },
+  "scripts": {
+    "docker-run": "npm run docker-build && npm run docker-tag && docker run -p 8081:80 -p 8444:443 $npm_package_dockerimage:$npm_package_version",
+    "docker-build": "docker build -t $npm_package_dockerimage .",
+    "docker-tag": "docker tag $npm_package_dockerimage $npm_package_dockerimage:$npm_package_version",
+    "docker-push": "docker push $npm_package_dockerimage:$npm_package_version",
+    "bump": "npm version patch"
+  }
+}
